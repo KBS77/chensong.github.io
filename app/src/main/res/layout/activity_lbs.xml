@@ -5,7 +5,7 @@
     android:id="@+id/activity_lbs"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kbs.sohu.hushuov1.activity.LBSActivity">
+    tools:context=".ui.activity.LBSActivity">
 
     <com.baidu.mapapi.map.MapView
         android:id="@+id/mv_location_map"
@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:clickable="true"/>
 
-    <com.kbs.sohu.hushuov1.widget.CircleView
+    <com.kbs.sohu.hushuov1.ui.widget.CircleView
         android:id="@+id/cv_bt_start"
         android:layout_width="50dp"
         android:layout_height="50dp"

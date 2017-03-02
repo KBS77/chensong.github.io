@@ -4,10 +4,10 @@
     android:id="@+id/activity_choose_area"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kbs.sohu.hushuov1.activity.ChooseAreaActivity">
+    tools:context=".ui.activity.ChooseAreaActivity">
 
     <fragment
-        android:name="com.kbs.sohu.hushuov1.fragment.ChooseAreaFragment"
+        android:name="com.kbs.sohu.hushuov1.ui.fragment.ChooseAreaFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

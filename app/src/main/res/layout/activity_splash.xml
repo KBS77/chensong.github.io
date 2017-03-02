@@ -4,7 +4,7 @@
     android:id="@+id/activity_adactivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kbs.sohu.hushuov1.activity.SplashActivity">
+    tools:context=".ui.activity.SplashActivity">
 
 
     <ImageView

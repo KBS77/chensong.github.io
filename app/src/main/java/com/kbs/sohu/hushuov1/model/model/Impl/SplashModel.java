@@ -15,7 +15,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
- * Created by tarena on 2017/02/24.
+ * Created by cs on 2017/02/24.
  */
 
 public class SplashModel implements ISplashModel {

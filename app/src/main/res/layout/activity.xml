@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.MainActivity">
+    tools:context=".ui.activity.MainActivity">
 
 
     <android.support.v7.widget.Toolbar
@@ -37,7 +37,7 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <com.kbs.sohu.hushuov1.widget.RoadViewPager
+    <com.kbs.sohu.hushuov1.ui.widget.RoadViewPager
         android:id="@+id/vp_fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"

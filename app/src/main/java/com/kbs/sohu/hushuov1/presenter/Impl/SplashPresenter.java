@@ -4,10 +4,10 @@ import com.kbs.sohu.hushuov1.model.model.IModel.ISplashModel;
 import com.kbs.sohu.hushuov1.model.model.IModel.Imodel;
 import com.kbs.sohu.hushuov1.model.model.Impl.SplashModel;
 import com.kbs.sohu.hushuov1.presenter.Ipresenter.ISplashPresenter;
-import com.kbs.sohu.hushuov1.view.ISplashView;
+import com.kbs.sohu.hushuov1.ui.view.ISplashView;
 
 /**
- * Created by tarena on 2017/02/25.
+ * Created by cs on 2017/02/25.
  */
 
 public class SplashPresenter implements ISplashPresenter {

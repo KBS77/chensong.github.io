@@ -6,7 +6,7 @@ import android.content.Context;
 import com.baidu.mapapi.SDKInitializer;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.easeui.controller.EaseUI;
-import com.kbs.sohu.hushuov1.handler.CrashHandler;
+import com.kbs.sohu.hushuov1.utils.handler.CrashHandler;
 import com.kbs.sohu.hushuov1.model.Model;
 
 import org.litepal.LitePalApplication;

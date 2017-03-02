@@ -47,7 +47,7 @@
 
     <fragment
         android:id="@+id/choose_city_area"
-        android:name="com.kbs.sohu.hushuov1.fragment.ChooseAreaFragment"
+        android:name="com.kbs.sohu.hushuov1.ui.fragment.ChooseAreaFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"

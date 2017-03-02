@@ -35,7 +35,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.SplashActivity"
+            android:name=".ui.activity.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,17 +44,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.AddContactActivity" />
-        <activity android:name=".activity.AddFriendActivity" />
-        <activity android:name=".activity.ChatActivity" />
-        <activity android:name=".activity.GroupListActivity" />
-        <activity android:name=".activity.InvitationActivity" />
-        <activity android:name=".activity.WeatherActivity" />
-        <activity android:name=".activity.ChangeNickActivity" />
+        <activity android:name=".ui.activity.LoginActivity" />
+        <activity android:name=".ui.activity.RegisterActivity" />
+        <activity android:name=".ui.activity.AddContactActivity" />
+        <activity android:name=".ui.activity.AddFriendActivity" />
+        <activity android:name=".ui.activity.ChatActivity" />
+        <activity android:name=".ui.activity.GroupListActivity" />
+        <activity android:name=".ui.activity.InvitationActivity" />
+        <activity android:name=".ui.activity.WeatherActivity" />
+        <activity android:name=".ui.activity.ChangeNickActivity" />
         <!-- 设置环信应用的AppKey -->
         <meta-data
             android:name="EASEMOB_APPKEY"
@@ -88,20 +88,20 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activity.GroupDetailActivity" />
-        <activity android:name=".activity.NewGroupActivity" />
-        <activity android:name=".activity.PickContactActivity" />
-        <activity android:name=".activity.LBSActivity" />
-        <activity android:name=".activity.WeatherActivity" />
-        <activity android:name=".activity.ChooseAreaActivity" />
+        <activity android:name=".ui.activity.GroupDetailActivity" />
+        <activity android:name=".ui.activity.NewGroupActivity" />
+        <activity android:name=".ui.activity.PickContactActivity" />
+        <activity android:name=".ui.activity.LBSActivity" />
+        <activity android:name=".ui.activity.WeatherActivity" />
+        <activity android:name=".ui.activity.ChooseAreaActivity" />
 
         <service
             android:name=".service.AutoUpdateService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".activity.PhotoListActivity" />
-        <activity android:name=".activity.PersonDetailActivity"></activity>
+        <activity android:name=".ui.activity.PhotoListActivity" />
+        <activity android:name=".ui.activity.PersonDetailActivity"></activity>
     </application>
 
 </manifest>
