@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_lbs"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.kbs.sohu.hushuov1.activity.LBSActivity">
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/mv_location_map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"/>
+
+    <com.kbs.sohu.hushuov1.widget.CircleView
+        android:id="@+id/cv_bt_start"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/ll_lbs_data"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:clickable="true"
+        android:text="开始"
+        android:textSize="18sp"
+        android:gravity="center"
+        />
+    
+    <LinearLayout
+        android:id="@+id/ll_lbs_data"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="#ccffffff"
+        >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:id="@+id/tv_road_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="0.0km"
+                android:textSize="20sp"
+                android:textColor="#000"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="距离（公里）"
+                android:layout_marginBottom="10dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:id="@+id/tv_sport_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="00:00:00"
+                android:textSize="20sp"
+                android:textColor="#000"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="时长"
+                android:layout_marginBottom="10dp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="camera">camera</string>
+    <string name="cancel">Cancel</string>
+    <string name="i_know">OK</string>
+    <string name="loading">loading…</string>
+    <string name="low_permission">\n%1$s </string>
+    <string name="permission">Allow popon to access your %1$s from device menu:
+“Settings” ->popon->“Privacy” ->%2$s </string>
+    <string name="qr_name">QRCode</string>
+    <string name="setting">Setting</string>
+</resources>

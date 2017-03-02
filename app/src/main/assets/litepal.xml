@@ -1,0 +1,13 @@
+<litepal>
+    <dbname value="Xing_weather"/>
+
+    <version value="2"/>
+
+    <list>
+        <mapping class="com.kbs.sohu.hushuov1.model.bean.Province"/>
+        <mapping class="com.kbs.sohu.hushuov1.model.bean.City"/>
+        <mapping class="com.kbs.sohu.hushuov1.model.bean.County"/>
+        
+    </list>
+
+</litepal>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_adactivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.kbs.sohu.hushuov1.activity.SplashActivity">
+
+
+    <ImageView
+        android:id="@+id/spalsh_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        />
+
+    <TextView
+        android:id="@+id/spalsh_daojishi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_above="@+id/spalsh_banquan"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="#fff"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:background="@drawable/splah_tv_back"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="广告"
+        android:background="#44000000"
+        />
+    <TextView
+        android:id="@+id/spalsh_banquan"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="搜狐公司所有版权 @2017-2018"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:background="#ffffff"/>
+
+</RelativeLayout>

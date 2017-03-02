@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.hyphenate.easeui.widget.EaseTitleBar
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:titleBarTitle="更改昵称"
+        app:titleBarLeftImage="@drawable/back_white"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="20dp">
+
+    <EditText
+        android:id="@+id/et_nick"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:hint="请输入昵称"
+        android:textCursorDrawable="@drawable/color_cursor"
+        />
+
+    <Button
+        android:id="@+id/bt_save_nick"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/colorTheme"
+        android:padding="5dp"
+        android:text="保存"
+        android:textColor="@color/colorWord"
+        />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="取个好名让你的好友记住哦"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"/>
+
+</LinearLayout>

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="C:\kbs_code\day14\HuShuoV1\easeui\src\main\shaders"/></dataSet><dataSet config="release"><source path="C:\kbs_code\day14\HuShuoV1\easeui\build-types\release\shaders"/></dataSet></merger>

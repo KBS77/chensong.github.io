@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/friend_Back_Theme">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tl_addFriend_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_scrollFlags="scroll|enterAlways|snap"
+        app:contentInsetStart="0dp"
+        >
+
+        <RelativeLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize">
+
+            <TextView
+                android:id="@+id/tv_addFriend_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="添加好友"
+                android:textSize="20sp"
+                android:textColor="#ffffff"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="搜索"
+            android:textSize="14sp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ease_seabar_input"
+            android:layout_marginRight="15dp">
+        <EditText
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:id="@+id/et_query"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="@string/add_search"
+            android:textSize="16sp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="15dp"
+            android:textCursorDrawable="@color/et_cursor_back"
+            android:background="@null"
+            android:singleLine="true"/>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="26dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/view_common"/>
+
+        <ImageView
+            android:id="@+id/iv_search_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/search"
+            android:background="@null"
+            android:layout_margin="5dp"
+            android:clickable="true"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_friend_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:visibility="gone"/>
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="#fff">
+
+        <ImageView
+            android:id="@+id/iv_add_photo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/em_default_avatar" />
+
+        <TextView
+            android:id="@+id/tv_add_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/iv_add_photo"
+            android:text="名称"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/bt_add_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:text="添加"
+            />
+    </RelativeLayout>
+
+</LinearLayout>
