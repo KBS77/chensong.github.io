@@ -1,4 +1,4 @@
-package com.kbs.sohu.hushuov1.dialog;
+package com.kbs.sohu.hushuov1.widget;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

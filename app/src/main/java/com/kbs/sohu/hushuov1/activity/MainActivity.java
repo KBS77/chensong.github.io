@@ -36,7 +36,7 @@ import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.kbs.sohu.hushuov1.R;
 import com.kbs.sohu.hushuov1.XingApplication;
-import com.kbs.sohu.hushuov1.dialog.HeaderDialog;
+import com.kbs.sohu.hushuov1.widget.HeaderDialog;
 import com.kbs.sohu.hushuov1.fragment.ChatFragment;
 import com.kbs.sohu.hushuov1.fragment.ContactListFragment;
 import com.kbs.sohu.hushuov1.fragment.MainFragment;
