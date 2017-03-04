@@ -63,9 +63,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.drawer_layout) DrawerLayout mdrawerLayout;
     @BindView(R.id.nv_left_menu) NavigationView nv_left_menu;
-    @BindView(R.id.iv_menu_bg) ImageView iv_menu_bg;
-    @BindView(R.id.civ_user_photo) CircleImageView civ_user_photo;
-    @BindView(R.id.tv_user_nick1) TextView tv_user_nick;
+    private ImageView iv_menu_bg;
+    private CircleImageView civ_user_photo;
+    private TextView tv_user_nick;
     @BindView(R.id.vp_fragment) RoadViewPager vp_fragment;
     private ActionBar ab;
     private IntentFilter intentFilter;
@@ -87,12 +87,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        initView();
         setToolBar();
         setViewPagers();
         initUser();
         setDrawers();
         setHeader();
         initListener();
+    }
+
+    private void initView() {
+        iv_menu_bg = (ImageView) nv_left_menu.findViewById(R.id.iv_menu_bg);
+        civ_user_photo = (CircleImageView) nv_left_menu.findViewById(R.id.civ_user_photo);
+        tv_user_nick = (TextView) nv_left_menu.findViewById(R.id.tv_user_nick1);
     }
 
     private void initUser() {
@@ -124,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         civ_user_photo.setOnClickListener(this);
         tv_user_nick.setOnClickListener(this);
         intentFilter = new IntentFilter();
-        intentFilter.addAction("com.kbs.sohu.hushuov1.CHANGE_NICK");
+        intentFilter.addAction("com.kbs.sohu.action_send");
         lbm.registerReceiver(nickChangeReceiver,intentFilter);
     }
 

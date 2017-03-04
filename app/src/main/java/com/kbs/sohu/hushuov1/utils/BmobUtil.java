@@ -12,7 +12,7 @@ import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 
 /**
- * Created by tarena on 2017/03/1.
+ * Created by cs on 2017/03/1.
  */
 
 public class BmobUtil {
@@ -67,7 +67,10 @@ public class BmobUtil {
         bmobQuery.findObjects(new FindListener<UserInfo>() {
             @Override
             public void done(List<UserInfo> users, BmobException e) {
-                user = users.get(0);
+                if(e == null){
+                    Log.d(TAG,"login success");
+                    user = users.get(0);
+                }
             }
         });
         return user;

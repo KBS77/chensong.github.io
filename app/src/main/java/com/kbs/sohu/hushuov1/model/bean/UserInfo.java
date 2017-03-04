@@ -1,12 +1,12 @@
 package com.kbs.sohu.hushuov1.model.bean;
 
-import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.BmobUser;
 
 /**
  * Created by tarena on 2017/02/10.
  */
 
-public class UserInfo extends BmobObject{
+public class UserInfo extends BmobUser{
 
    private String name;// 用户名称
     private String hxid;// 环信id

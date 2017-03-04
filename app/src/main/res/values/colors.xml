@@ -2,10 +2,10 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#0163c4</color>
-    <color name="colorTheme">#0163c4</color>
+    <color name="colorAccent">#03a9f4</color>
+    <color name="colorTheme">#03a9f4</color>
     <color name="friend_Back_Theme">#f1f1f1</color>
-    <color name="et_cursor_back">#00bbcc</color>
+    <color name="et_cursor_back">#03a9f4</color>
     <color name="colorWord">#ffffff</color>
     <color name="view_common">#a1a1a1</color>
     <color name="back_theme">#f1f1f1</color>
