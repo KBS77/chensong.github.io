@@ -65,6 +65,7 @@
                 android:maxLines="1"
                 android:maxLength="11"
                 android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
                 android:textCursorDrawable="@drawable/color_cursor"
                 android:textSize="15dp"
                 />
@@ -106,9 +107,8 @@
 
         <com.kbs.sohu.hushuov1.ui.widget.ClearWriteEditText
             android:id="@+id/et_login_password"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_weight="1"
             android:layout_gravity="center_vertical"
             android:hint="密码"
             android:maxLines="1"
@@ -116,6 +116,7 @@
             android:background="@null"
             android:textCursorDrawable="@drawable/color_cursor"
             android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
             android:textSize="15dp"
             />
 
