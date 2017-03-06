@@ -9,13 +9,22 @@
         android:id="@+id/iv_register_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:src="@drawable/login_back"
         android:scaleType="fitXY"/>
+
+    <ImageView
+        android:id="@+id/iv_app_logo"
+        android:layout_width="150dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/logo1"/>
 
     <LinearLayout
         android:id="@+id/register_phone"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="230dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         >
@@ -42,28 +51,71 @@
             android:background="#22000000"
             >
 
-            <EditText
+            <com.kbs.sohu.hushuov1.ui.widget.ClearWriteEditText
                 android:id="@+id/et_register_phone"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
                 android:background="@null"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:hint="请输入手机号"
                 android:layout_marginLeft="5dp"
                 android:textSize="15dp"
                 android:textCursorDrawable="@drawable/color_cursor"
                 />
 
-            <ImageButton
-                android:id="@+id/ib_registerPhe_clear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/register_nick"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@+id/register_phone"
+        >
+
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="#88000000">
+
+            <ImageView
+                android:id="@+id/register_nick_st"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="12dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/register_nick"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#22000000"
+            >
+
+            <com.kbs.sohu.hushuov1.ui.widget.ClearWriteEditText
+                android:id="@+id/et_register_nick"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
                 android:layout_gravity="center_vertical"
-                android:background="@android:color/transparent"
-                android:padding="6dp"
-                android:src="@drawable/xing_search_clear"
-                android:visibility="invisible"/>
+                android:background="@null"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="昵称"
+                android:layout_marginLeft="5dp"
+                android:textSize="15dp"
+                android:textCursorDrawable="@drawable/color_cursor"
+                />
 
         </LinearLayout>
 
@@ -76,7 +128,7 @@
         android:layout_marginTop="2dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_below="@+id/register_phone"
+        android:layout_below="@+id/register_nick"
         >
 
     <LinearLayout
@@ -99,7 +151,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#22000000">
-        <EditText
+
+        <com.kbs.sohu.hushuov1.ui.widget.ClearWriteEditText
             android:id="@+id/et_register_password"
             android:layout_width="0dp"
             android:layout_height="40dp"
@@ -108,20 +161,12 @@
             android:hint="密码"
             android:inputType="textPassword"
             android:background="@null"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
             android:layout_marginLeft="5dp"
             android:textSize="15dp"
             android:textCursorDrawable="@drawable/color_cursor"
             />
-
-        <ImageButton
-            android:id="@+id/ib_registerPwt_clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:background="@android:color/transparent"
-            android:padding="6dp"
-            android:src="@drawable/xing_search_clear"
-            android:visibility="invisible" />
 
     </LinearLayout>
 

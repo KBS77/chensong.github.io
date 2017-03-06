@@ -1,10 +1,7 @@
 package com.kbs.sohu.hushuov1.ui.activity;
 
 import android.Manifest;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -16,36 +13,32 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.kbs.sohu.hushuov1.R;
-import com.kbs.sohu.hushuov1.XingApplication;
-import com.kbs.sohu.hushuov1.ui.widget.HeaderDialog;
+import com.kbs.sohu.hushuov1.model.Model;
+import com.kbs.sohu.hushuov1.model.bean.UserInfo;
 import com.kbs.sohu.hushuov1.ui.fragment.ChatFragment;
 import com.kbs.sohu.hushuov1.ui.fragment.ContactListFragment;
 import com.kbs.sohu.hushuov1.ui.fragment.MainFragment;
 import com.kbs.sohu.hushuov1.ui.fragment.SettingFragment;
-import com.kbs.sohu.hushuov1.utils.handler.HandlerUtil;
-import com.kbs.sohu.hushuov1.model.Model;
-import com.kbs.sohu.hushuov1.model.bean.UserInfo;
-import com.kbs.sohu.hushuov1.utils.BmobUtil;
+import com.kbs.sohu.hushuov1.ui.widget.HeaderDialog;
 import com.kbs.sohu.hushuov1.ui.widget.RoadViewPager;
+import com.kbs.sohu.hushuov1.ui.widget.TopMenuDialog;
+import com.kbs.sohu.hushuov1.utils.handler.HandlerUtil;
 import com.znq.zbarcode.CaptureActivity;
 
 import java.util.ArrayList;
@@ -54,7 +47,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
-import jp.wasabeef.glide.transformations.BlurTransformation;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -63,24 +55,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.drawer_layout) DrawerLayout mdrawerLayout;
     @BindView(R.id.nv_left_menu) NavigationView nv_left_menu;
+    @BindView(R.id.toolbar_add)
+    Button toolbar_add;
     private ImageView iv_menu_bg;
     private CircleImageView civ_user_photo;
     private TextView tv_user_nick;
+    private TopMenuDialog top_menu_dialog;
     @BindView(R.id.vp_fragment) RoadViewPager vp_fragment;
     private ActionBar ab;
-    private IntentFilter intentFilter;
     private long time = 0;
     private UserInfo user;
-    private LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
     private static String[] mTitles = new String[]{"行图", "消息", "联系人", "设置"};
-
-    private BroadcastReceiver nickChangeReceiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            refreshNick();
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,26 +75,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initView();
         setToolBar();
         setViewPagers();
-        initUser();
         setDrawers();
-        setHeader();
-        initListener();
+        toolbar_add.setOnClickListener(this);
+//        setHeader();
+//        initListener();
     }
 
     private void initView() {
-        iv_menu_bg = (ImageView) nv_left_menu.findViewById(R.id.iv_menu_bg);
-        civ_user_photo = (CircleImageView) nv_left_menu.findViewById(R.id.civ_user_photo);
-        tv_user_nick = (TextView) nv_left_menu.findViewById(R.id.tv_user_nick1);
-    }
-
-    private void initUser() {
-        Model.getInstance().getGlobalThreadPool().execute(new Runnable() {
+        iv_menu_bg = (ImageView)findViewById(R.id.iv_menu_bg);
+        civ_user_photo = (CircleImageView)findViewById(R.id.civ_user_photo);
+        tv_user_nick = (TextView)findViewById(R.id.tv_user_nick1);
+        top_menu_dialog = new TopMenuDialog(MainActivity.this, new TopMenuDialog.OnTopMenuSelectListener() {
             @Override
-            public void run() {
-               user = BmobUtil.getInstance().getUser(EMClient.getInstance().getCurrentUser());
+            public void onSelected(int position) {
+                switch (position) {
+                    case 0:
+                        //添加
+                        NewGroupActivity.start(MainActivity.this,NewGroupActivity.class); //创建群聊
+                        break;
+                    case 1:
+                        //添加朋友
+                        AddFriendActivity.start(MainActivity.this,AddFriendActivity.class);
+                        break;
+                    case 2:
+                        Intent intent = new Intent(MainActivity.this,CaptureActivity.class);
+                        startActivity(intent);
+                        break;
+                }
             }
         });
+        int[] icons = {R.mipmap.chat_create, R.mipmap.add_friend, R.mipmap.menu_sao};
+        String[] menus = {"创建群聊", "添加朋友", "扫一扫"};
+        top_menu_dialog.setMenus(icons, menus);
     }
+
 
     private void setToolBar() {
         setSupportActionBar(toolbar);
@@ -119,26 +118,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ab.setTitle("");
     }
 
-    private void setHeader() {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(XingApplication.getGlobalApplication());
-        String menuBc = prefs.getString("ad_pic",null);
-        Glide.with(this).load(R.drawable.steve_jobs).into(civ_user_photo);
-        Glide.with(this).load(menuBc).bitmapTransform(new BlurTransformation(this,10),new CenterCrop(this)).into(iv_menu_bg);
-        refreshNick();
-    }
+//    private void setHeader() {
+//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(XingApplication.getGlobalApplication());
+//        String menuBc = prefs.getString("ad_pic",null);
+//        Glide.with(this).load(R.drawable.steve_jobs).into(civ_user_photo);
+//        Glide.with(this).load(menuBc).bitmapTransform(new BlurTransformation(this,5),new CenterCrop(this)).into(iv_menu_bg);
+//        refreshNick();
+//    }
 
     private void initListener() {
         civ_user_photo.setOnClickListener(this);
         tv_user_nick.setOnClickListener(this);
-        intentFilter = new IntentFilter();
-        intentFilter.addAction("com.kbs.sohu.action_send");
-        lbm.registerReceiver(nickChangeReceiver,intentFilter);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar,menu);
-        return true;
     }
 
     private void setViewPagers() {
@@ -178,7 +168,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
-
     }
 
     @Override
@@ -191,6 +180,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.tv_user_nick1:
                 ChangeNickActivity.actionStart(MainActivity.this,tv_user_nick.getText().toString());
                 break;
+            case R.id.toolbar_add:
+                top_menu_dialog.show(v);
         }
     }
 
@@ -238,10 +229,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 mdrawerLayout.closeDrawers();
                             }
                             break;
-                        case R.id.nav_friends:
-                            openTcode();
-                            mdrawerLayout.closeDrawers();
-                            break;
                         case R.id.nav_location:
                             Intent intent1 = new Intent(MainActivity.this, LBSActivity.class);
                             startActivity(intent1);
@@ -271,11 +258,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    private void openTcode() {
-        Intent intent = new Intent(this, CaptureActivity.class);
-        startActivity(intent);
-    }
-
     private void openAlbum() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
@@ -284,7 +266,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void refreshNick() {
         user = Model.getInstance().getUserAccountDao().getAccountByHxId(EMClient.getInstance().getCurrentUser());
-        tv_user_nick.setText(user.getNick());
+        tv_user_nick.setText(user.getName());
     }
 
     @Override
@@ -346,19 +328,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case android.R.id.home:
                 mdrawerLayout.openDrawer(Gravity.LEFT);
                 return true;
-            case R.id.main_add:
-                startActivity(new Intent(MainActivity.this,AddFriendActivity.class));
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-
     @Override
     protected void onDestroy() {
         HandlerUtil.getInstance(this).removeCallbacksAndMessages(null);
         super.onDestroy();
-        lbm.unregisterReceiver(nickChangeReceiver);
     }
 
     @Override

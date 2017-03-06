@@ -31,25 +31,18 @@ public class UserAccountDao {
         values.put(UserAccountTable.COL_HXID, user.getHxid());
         values.put(UserAccountTable.COL_NAME, user.getName());
         values.put(UserAccountTable.COL_NICK, user.getNick());
-        values.put(UserAccountTable.COL_PHOTO, user.getPhoto());
-        values.put(UserAccountTable.COL_MPHONE,user.getMobliePhoneNumber());
 
         db.replace(UserAccountTable.TAB_NAME, null, values);
     }
 
-    public void updateAccount(String hxid,String nick,String photo){
+    public void updateAccount(String hxid,String nick){
 
         SQLiteDatabase db = mHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
 
-        if(nick != null && photo != null){
+        if(nick != null){
             values.put(UserAccountTable.COL_NICK, nick);
-            values.put(UserAccountTable.COL_PHOTO, photo);
-        }else if(nick != null){
-            values.put(UserAccountTable.COL_NICK, nick);
-        }else{
-            values.put(UserAccountTable.COL_PHOTO, photo);
         }
 
         db.update(UserAccountTable.TAB_NAME,values,"hxid = ?",new String[]{hxid});
@@ -72,8 +65,6 @@ public class UserAccountDao {
             userInfo.setHxid(cursor.getString(cursor.getColumnIndex(UserAccountTable.COL_HXID)));
             userInfo.setName(cursor.getString(cursor.getColumnIndex(UserAccountTable.COL_NAME)));
             userInfo.setNick(cursor.getString(cursor.getColumnIndex(UserAccountTable.COL_NICK)));
-            userInfo.setPhoto(cursor.getString(cursor.getColumnIndex(UserAccountTable.COL_PHOTO)));
-            userInfo.setMobliePhoneNumber(cursor.getString(cursor.getColumnIndex(UserAccountTable.COL_MPHONE)));
         }
 
         // 关闭资源

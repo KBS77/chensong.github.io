@@ -21,9 +21,14 @@
         >
 
         <RelativeLayout
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize">
+
+            <View
+                android:id="@+id/non_view"
+                android:layout_width="20dp"
+                android:layout_height="1dp"
+                android:layout_centerInParent="true"/>
 
             <TextView
                 android:id="@+id/main_title"
@@ -31,7 +36,18 @@
                 android:layout_height="wrap_content"
                 android:text="行图"
                 android:textSize="20sp"
+                android:layout_toLeftOf="@+id/non_view"
+                android:layout_centerVertical="true"
                 android:textColor="#ffffff"/>
+
+            <Button
+                android:id="@+id/toolbar_add"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/recomfind_add"
+                android:layout_marginRight="10dp"/>
 
         </RelativeLayout>
 

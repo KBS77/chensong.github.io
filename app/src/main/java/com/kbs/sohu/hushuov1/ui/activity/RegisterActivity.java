@@ -10,40 +10,39 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.HyphenateException;
 import com.kbs.sohu.hushuov1.R;
 import com.kbs.sohu.hushuov1.model.Model;
+import com.kbs.sohu.hushuov1.ui.widget.ClearWriteEditText;
+import com.kbs.sohu.hushuov1.utils.AmUtil;
 import com.kbs.sohu.hushuov1.utils.BmobUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
-import jp.wasabeef.glide.transformations.BlurTransformation;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
 
-    @BindView(R.id.et_register_phone) EditText phoneEdit;
-    @BindView(R.id.et_register_password) EditText pswEdit;
-    @BindView(R.id.et_register_yanzheng) EditText yanzhengEdit;
+    @BindView(R.id.et_register_phone)
+    ClearWriteEditText phoneEdit;
+    @BindView(R.id.et_register_password)
+    ClearWriteEditText pswEdit;
+    @BindView(R.id.et_register_yanzheng)
+    EditText yanzhengEdit;
+    @BindView(R.id.et_register_nick)
+    ClearWriteEditText nickEdit;
     private RequestQueue queue;
-    String registerPhone,registerPsw,verification_code;
+    String registerPhone,registerPsw,verification_code,registerNick;
     private int i = 60;
-    @BindView(R.id.iv_register_background) ImageView blurRegisterIm;
     @BindView(R.id.btn_getSMS) Button btn_getSMS;
     @BindView(R.id.btn_register) Button btn_register;
     @BindView(R.id.btn_backTolg) Button btn_backToLg;
-    @BindView(R.id.ib_registerPhe_clear) ImageButton phoneClear;
-    @BindView(R.id.ib_registerPwt_clear) ImageButton passwordClear;
     Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             if (msg.what == -9) {
@@ -62,7 +61,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 Toast.LENGTH_SHORT).show();
                         requestzhucexinxi();
                     } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
-                        Toast.makeText(RegisterActivity.this, "验证已发送",
+                        Toast.makeText(RegisterActivity.this, "短信已发送，请注意查收",
                                 Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(RegisterActivity.this, "验证错误",
@@ -83,26 +82,18 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
-        loadBackground();
         setChange();
         queue = Volley.newRequestQueue(RegisterActivity.this);
         btn_getSMS.setOnClickListener(this);
         btn_register.setOnClickListener(this);
     }
 
-    private void loadBackground(){
-        Glide.with(this).load(R.drawable.login_background1)
-                .bitmapTransform(new BlurTransformation(this,20),new CenterCrop(this))
-                .into(blurRegisterIm);
-    }
 
     private void setChange() {
         phoneEdit.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 0) {
-                    phoneClear.setVisibility(View.VISIBLE);
-                } else {
-                    phoneClear.setVisibility(View.INVISIBLE);
+                if (s.length() == 11) {
+                    AmUtil.onInactive(RegisterActivity.this,phoneEdit);
                 }
             }
 
@@ -110,27 +101,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             }
 
             public void afterTextChanged(Editable s) {
-                phoneClear.setVisibility(View.INVISIBLE);
             }
         });
-        phoneClear.setOnClickListener(this);
-        pswEdit.addTextChangedListener(new TextWatcher() {
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 0) {
-                    passwordClear.setVisibility(View.VISIBLE);
-                } else {
-                    passwordClear.setVisibility(View.INVISIBLE);
-                }
-            }
 
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            public void afterTextChanged(Editable s) {
-                passwordClear.setVisibility(View.INVISIBLE);
-            }
-        });
-        passwordClear.setOnClickListener(this);
         btn_backToLg.setOnClickListener(this);
         SMSSDK.initSDK(RegisterActivity.this, "1b49882f8b9c6", "95de648756bfede6a3d1e5c22a531d39");
         EventHandler eh = new EventHandler() {
@@ -155,12 +128,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             case R.id.btn_register:
                 regiseter();
                 break;
-            case R.id.ib_registerPhe_clear:
-                phoneEdit.getText().clear();
-                break;
-            case R.id.ib_registerPwt_clear:
-                pswEdit.getText().clear();
-                break;
             case R.id.btn_backTolg:
                 finish();
                 break;
@@ -182,7 +149,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     // 去环信服务器注册账号
                     EMClient.getInstance().createAccount(registerPhone,registerPsw);
                     //将个人信息存储至云端
-                    BmobUtil.getInstance().addUser(registerPhone,registerPsw);
+                    BmobUtil.getInstance().addUser(registerPhone,registerPsw,registerNick);
                     // 更新页面显示
                     runOnUiThread(new Runnable() {
                         @Override
@@ -275,6 +242,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         verification_code = yanzhengEdit.getText().toString();
         registerPhone = phoneEdit.getText().toString();
         registerPsw = pswEdit.getText().toString();
+        registerNick = nickEdit.getText().toString();
         if (verification_code == null || verification_code.length() <= 0) {
             Toast.makeText(RegisterActivity.this, "验证码不能为空！", Toast.LENGTH_SHORT).show();
             return;

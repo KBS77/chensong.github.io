@@ -6,7 +6,6 @@
     <style name="SplashTheme" parent="BaseTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowBackground">@drawable/logo</item>
     </style>
 
     <style name="GoneStatusTheme" parent="AppTheme">

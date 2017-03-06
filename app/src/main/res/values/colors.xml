@@ -10,4 +10,6 @@
     <color name="view_common">#a1a1a1</color>
     <color name="back_theme">#f1f1f1</color>
     <color name="main_bg">#c1c3c3</color>
+    <color name="transparent">#00000000</color>
+    <color name="textColor000">#000000</color>
 </resources>

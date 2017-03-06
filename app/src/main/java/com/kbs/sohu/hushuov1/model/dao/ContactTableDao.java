@@ -39,7 +39,6 @@ public class ContactTableDao {
             userInfo.setHxid(cursor.getString(cursor.getColumnIndex(ContactTable.COL_HXID)));
             userInfo.setName(cursor.getString(cursor.getColumnIndex(ContactTable.COL_NAME)));
             userInfo.setNick(cursor.getString(cursor.getColumnIndex(ContactTable.COL_NICK)));
-            userInfo.setPhoto(cursor.getString(cursor.getColumnIndex(ContactTable.COL_PHOTO)));
 
             users.add(userInfo);
         }
@@ -73,7 +72,6 @@ public class ContactTableDao {
             userInfo.setHxid(cursor.getString(cursor.getColumnIndex(ContactTable.COL_HXID)));
             userInfo.setName(cursor.getString(cursor.getColumnIndex(ContactTable.COL_NAME)));
             userInfo.setNick(cursor.getString(cursor.getColumnIndex(ContactTable.COL_NICK)));
-            userInfo.setPhoto(cursor.getString(cursor.getColumnIndex(ContactTable.COL_PHOTO)));
         }
 
         // 关闭资源
@@ -118,7 +116,6 @@ public class ContactTableDao {
         values.put(ContactTable.COL_HXID, user.getHxid());
         values.put(ContactTable.COL_NAME, user.getName());
         values.put(ContactTable.COL_NICK, user.getNick());
-        values.put(ContactTable.COL_PHOTO, user.getPhoto());
         values.put(ContactTable.COL_IS_CONTACT, isMyContact ? 1 : 0);
 
         db.replace(ContactTable.TAB_NAME, null, values);

@@ -16,7 +16,6 @@ import com.kbs.sohu.hushuov1.model.Model;
 import com.kbs.sohu.hushuov1.model.bean.UserInfo;
 import com.kbs.sohu.hushuov1.presenter.Impl.SplashPresenter;
 import com.kbs.sohu.hushuov1.ui.view.ISplashView;
-import com.kbs.sohu.hushuov1.utils.BmobUtil;
 import com.kbs.sohu.hushuov1.utils.handler.HandlerUtil;
 
 import butterknife.BindView;
@@ -90,15 +89,15 @@ public class SplashActivity extends AppCompatActivity implements ISplashView{
         if(EMClient.getInstance().isLoggedInBefore()) {// 登录过
 
             // 获取到当前登录用户的信息
-            String account = EMClient.getInstance().getCurrentUser();
-            UserInfo loginUser = BmobUtil.getInstance().getUser(EMClient.getInstance().getCurrentUser());
-            if(loginUser == null || account == null) {
+            UserInfo account = Model.getInstance().getUserAccountDao().getAccountByHxId(EMClient.getInstance().getCurrentUser());
+
+            if(account == null) {
                     // 跳转到登录页面
                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
             }else {
                 // 登录成功后的方法
-                Model.getInstance().loginSuccess(loginUser);
+                Model.getInstance().loginSuccess(account);
 
                 // 跳转到主页面
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);

@@ -2,7 +2,6 @@ package com.kbs.sohu.hushuov1.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +24,7 @@ import butterknife.ButterKnife;
  * Created by cs on 2017/02/13.
  */
 
-public class AddFriendActivity extends AppCompatActivity implements View.OnClickListener{
+public class AddFriendActivity extends BaseActivity implements View.OnClickListener{
 
     @BindView(R.id.et_query) EditText et_query;
     @BindView(R.id.iv_search_friend) ImageView iv_search_friend;

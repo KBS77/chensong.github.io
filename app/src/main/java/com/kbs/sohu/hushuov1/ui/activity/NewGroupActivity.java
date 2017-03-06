@@ -2,7 +2,6 @@ package com.kbs.sohu.hushuov1.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,7 +14,7 @@ import com.hyphenate.exceptions.HyphenateException;
 import com.kbs.sohu.hushuov1.R;
 import com.kbs.sohu.hushuov1.model.Model;
 
-public class NewGroupActivity extends AppCompatActivity {
+public class NewGroupActivity extends BaseActivity {
 
     private EditText et_newgroup_name;
     private EditText et_newgroup_desc;

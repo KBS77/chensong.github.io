@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.kbs.sohu.hushuov1.R;
-import com.kbs.sohu.hushuov1.utils.handler.HandlerUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,18 +35,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        HandlerUtil.getInstance(getActivity().getApplicationContext()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                int currentItem = vp_mf_recommend.getCurrentItem();
-                if(currentItem == vp_mf_recommend.getAdapter().getCount() - 1){
-                    vp_mf_recommend.setCurrentItem(1);
-                }else{
-                    vp_mf_recommend.setCurrentItem(currentItem + 1);
-                }
-                HandlerUtil.getInstance(getActivity().getApplicationContext()).postDelayed(this,3500);
-            }
-        },3500);
+
     }
 
     @Nullable

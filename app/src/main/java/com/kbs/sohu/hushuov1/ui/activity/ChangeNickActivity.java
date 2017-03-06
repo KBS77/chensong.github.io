@@ -68,7 +68,7 @@ public class ChangeNickActivity extends AppCompatActivity {
         save_nick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Model.getInstance().getUserAccountDao().updateAccount(EMClient.getInstance().getCurrentUser(),nick,null);
+                Model.getInstance().getUserAccountDao().updateAccount(EMClient.getInstance().getCurrentUser(),nick);
                 Intent intent = new Intent("com.kbs.sohu.hushuov1.CHANGE_NICK");
                 sendBroadcast(intent);
                 finish();

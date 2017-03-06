@@ -29,11 +29,12 @@ public class BmobUtil {
         return sInstance;
     }
 
-    public void addUser(String registerPhone,String password){
+    public void addUser(String registerPhone,String password,String nick){
         UserInfo user = new UserInfo();
-        user.setMobliePhoneNumber(registerPhone);
+        user.setUsername(registerPhone);
         user.setPassword(password);
-        user.save(new SaveListener<String>() {
+        user.setNick(nick);
+        user.signUp(new SaveListener<String>() {
 
             @Override
             public void done(String objectId, BmobException e) {
@@ -54,9 +55,9 @@ public class BmobUtil {
 
     }
 
-    public UserInfo getUser(String phone){
+    public UserInfo getUser(String username){
         final BmobQuery<UserInfo> bmobQuery	 = new BmobQuery<UserInfo>();
-        bmobQuery.addWhereEqualTo("mobliePhoneNumber",phone);
+        bmobQuery.addWhereEqualTo("username",username);
         //先判断是否有缓存
         boolean isCache = bmobQuery.hasCachedResult(UserInfo.class);
         if(isCache){

@@ -1,21 +1,19 @@
 package com.kbs.sohu.hushuov1.model.bean;
 
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobFile;
 
 /**
- * Created by tarena on 2017/02/10.
+ * Created by cs on 2017/02/10.
  */
 
 public class UserInfo extends BmobUser{
 
-   private String name;// 用户名称
+    private String name;// 用户名称
     private String hxid;// 环信id
     private String nick;// 用户的昵称
-    private String photo;// 头像
-    private String mobliePhoneNumber;
-    private String password;
+    private BmobFile photo;// 头像
     public UserInfo() {
-        this.setTableName("User_infomation");
     }
 
     public UserInfo(String name) {
@@ -23,7 +21,7 @@ public class UserInfo extends BmobUser{
         this.hxid = name;
     }
 
-    public UserInfo(String name, String nick , String photo) {
+    public UserInfo(String name, String nick , BmobFile photo) {
         this.name = name;
         this.nick = nick;
         this.photo = photo;
@@ -53,29 +51,14 @@ public class UserInfo extends BmobUser{
         this.nick = nick;
     }
 
-    public String getPhoto() {
+    public BmobFile getPhoto() {
         return photo;
     }
 
-    public void setPhoto(String photo) {
+    public void setPhoto(BmobFile photo) {
         this.photo = photo;
     }
 
-    public String getMobliePhoneNumber() {
-        return mobliePhoneNumber;
-    }
-
-    public void setMobliePhoneNumber(String mobliePhoneNumber) {
-        this.mobliePhoneNumber = mobliePhoneNumber;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     @Override
     public String toString() {
