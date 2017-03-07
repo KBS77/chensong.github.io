@@ -1,7 +1,6 @@
 package com.kbs.sohu.hushuov1.model.bean;
 
 import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.datatype.BmobFile;
 
 /**
  * Created by cs on 2017/02/10.
@@ -12,7 +11,10 @@ public class UserInfo extends BmobUser{
     private String name;// 用户名称
     private String hxid;// 环信id
     private String nick;// 用户的昵称
-    private BmobFile photo;// 头像
+    private String photo;// 头像
+
+    private String password2;
+
     public UserInfo() {
     }
 
@@ -21,7 +23,7 @@ public class UserInfo extends BmobUser{
         this.hxid = name;
     }
 
-    public UserInfo(String name, String nick , BmobFile photo) {
+    public UserInfo(String name, String nick , String photo) {
         this.name = name;
         this.nick = nick;
         this.photo = photo;
@@ -51,12 +53,20 @@ public class UserInfo extends BmobUser{
         this.nick = nick;
     }
 
-    public BmobFile getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(BmobFile photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public void setPassword2(String password2) {
+        this.password2 = password2;
+    }
+
+    public String getPassword2() {
+        return password2;
     }
 
 

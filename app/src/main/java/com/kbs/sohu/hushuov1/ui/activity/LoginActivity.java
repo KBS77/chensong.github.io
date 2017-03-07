@@ -3,13 +3,13 @@ package com.kbs.sohu.hushuov1.ui.activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hyphenate.EMCallBack;
@@ -19,15 +19,19 @@ import com.kbs.sohu.hushuov1.model.Model;
 import com.kbs.sohu.hushuov1.model.bean.UserInfo;
 import com.kbs.sohu.hushuov1.ui.widget.ClearWriteEditText;
 import com.kbs.sohu.hushuov1.utils.AmUtil;
+import com.kbs.sohu.hushuov1.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 
 /**
  * Created by chensong on 2017/02/7.
  */
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     @BindView(R.id.iv_app_logo) ImageView small_logo;
     @BindView(R.id.et_login_account) ClearWriteEditText account;
@@ -36,6 +40,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button bt_login_in;
     @BindView(R.id.bt_login_register)
     Button bt_login_register;
+    @BindView(R.id.tv_forget_password)
+    TextView tv_forget_password;
     private ProgressDialog progressDialog;
 
     @Override
@@ -50,6 +56,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void initListener() {
         bt_login_in.setOnClickListener(this);
         bt_login_register.setOnClickListener(this);
+        tv_forget_password.setOnClickListener(this);
     }
 
     private void setChange() {
@@ -102,51 +109,60 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
+
         // 3 登录逻辑处理
         Model.getInstance().getGlobalThreadPool().execute(new Runnable() {
             @Override
             public void run() {
-                // 登录环信服务器
-                EMClient.getInstance().login( name, pwd, new EMCallBack() {
-                    // 登录成功后的处理
+                //登录自己的服务器
+                BmobUser user1 = new BmobUser();
+                user1.setUsername(name);
+                user1.setPassword(pwd);
+                user1.login(new SaveListener<BmobUser>() {
+
                     @Override
-                    public void onSuccess() {
-                        closeProgressDialog();
-                        // 对模型层数据的处理
-                        Model.getInstance().loginSuccess(new UserInfo(name));
+                    public void done(BmobUser bmobUser, BmobException e) {
+                        if (e == null) {
+                            final UserInfo user2 = BmobUser.getCurrentUser(UserInfo.class);
+                            EMClient.getInstance().login(name, user2.getPassword2(), new EMCallBack() {
+                                @Override
+                                public void onSuccess() {
+                                    closeProgressDialog();
+                                    Model.getInstance().loginSuccess(user2);
+                                    Model.getInstance().getUserAccountDao().addAccount(user2);
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            // 提示登录成功
+                                            Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
 
-                        // 保存用户账号信息到本地数据库
-                        Model.getInstance().getUserAccountDao().addAccount(new UserInfo(name));
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                // 提示登录成功
-                                Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                                            // 跳转到主页面
+                                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                            startActivity(intent);
+                                            onDestroy();
+                                        }
+                                    });
+                                }
 
-                                // 跳转到主页面
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
-                                onDestroy();
-                            }
-                        });
-                    }
+                                @Override
+                                public void onError(int i, String s) {
+                                    // 提示登录失败
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
 
-                    // 登录失败的处理
-                    @Override
-                    public void onError(int i, final String s) {
-                        // 提示登录失败
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-
-                    // 登录过程中的处理
-                    @Override
-                    public void onProgress(int i, String s) {
-                        showProgressDialog();
+                                @Override
+                                public void onProgress(int i, String s) {
+                                    showProgressDialog();
+                                }
+                            });
+                        } else {
+                            ToastUtil.show("密码有误");
+                        }
                     }
                 });
             }

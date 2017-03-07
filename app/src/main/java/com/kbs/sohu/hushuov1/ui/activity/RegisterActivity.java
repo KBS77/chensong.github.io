@@ -149,7 +149,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     // 去环信服务器注册账号
                     EMClient.getInstance().createAccount(registerPhone,registerPsw);
                     //将个人信息存储至云端
-                    BmobUtil.getInstance().addUser(registerPhone,registerPsw,registerNick);
+                    BmobUtil.CreateUser(registerPhone,registerPsw,registerNick);
                     // 更新页面显示
                     runOnUiThread(new Runnable() {
                         @Override
@@ -169,9 +169,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 }
             }
         });
-
-
-//
     }
 
     private boolean judgePhoneNums(String phoneNums) {

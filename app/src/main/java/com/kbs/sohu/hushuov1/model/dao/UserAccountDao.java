@@ -29,8 +29,9 @@ public class UserAccountDao {
         // 执行添加操作
         ContentValues values = new ContentValues();
         values.put(UserAccountTable.COL_HXID, user.getHxid());
-        values.put(UserAccountTable.COL_NAME, user.getName());
+        values.put(UserAccountTable.COL_NAME, user.getUsername());
         values.put(UserAccountTable.COL_NICK, user.getNick());
+        values.put(UserAccountTable.COL_PHOTO, user.getPhoto());
 
         db.replace(UserAccountTable.TAB_NAME, null, values);
     }
@@ -65,6 +66,7 @@ public class UserAccountDao {
             userInfo.setHxid(cursor.getString(cursor.getColumnIndex(UserAccountTable.COL_HXID)));
             userInfo.setName(cursor.getString(cursor.getColumnIndex(UserAccountTable.COL_NAME)));
             userInfo.setNick(cursor.getString(cursor.getColumnIndex(UserAccountTable.COL_NICK)));
+            userInfo.setPhoto(cursor.getString(cursor.getColumnIndex(UserAccountTable.COL_PHOTO)));
         }
 
         // 关闭资源

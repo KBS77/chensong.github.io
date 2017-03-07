@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.kbs.sohu.hushuov1.model.bean.City;
 import com.kbs.sohu.hushuov1.model.bean.County;
 import com.kbs.sohu.hushuov1.model.bean.Province;
+import com.kbs.sohu.hushuov1.model.bean.ZhihuNewsinfo;
 import com.kbs.sohu.hushuov1.model.gson.Weather;
 
 import org.json.JSONArray;
@@ -83,6 +84,18 @@ public class Utility {
             JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
             String weatherContent = jsonArray.getJSONObject(0).toString();
             return new Gson().fromJson(weatherContent,Weather.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static ZhihuNewsinfo handleZhihuResponse(String response){
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("stories");
+            String ZhihuContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(ZhihuContent,ZhihuNewsinfo.class);
         } catch (JSONException e) {
             e.printStackTrace();
         }

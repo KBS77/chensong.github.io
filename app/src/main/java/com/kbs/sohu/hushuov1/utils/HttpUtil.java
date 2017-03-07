@@ -1,7 +1,6 @@
 package com.kbs.sohu.hushuov1.utils;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -31,7 +30,7 @@ public class HttpUtil {
     public static JsonObject getResposeJsonObject(String action1, Context context, boolean forceCache) {
         try {
             File sdcache = context.getCacheDir();
-            Cache cache = new Cache(sdcache.getAbsoluteFile(), 1024 * 1024 * 30); //30Mb
+            Cache cache = new Cache(sdcache.getAbsoluteFile(), 1024 * 1024 * 30);
             Request.Builder builder = new Request.Builder()
                     .url(action1);
             if (forceCache) {
@@ -41,7 +40,6 @@ public class HttpUtil {
             Response response = mOkHttpClient.newCall(request).execute();
             if (response.isSuccessful()) {
                 String c = response.body().string();
-                Log.e("cache", c);
                 JsonParser parser = new JsonParser();
                 JsonElement el = parser.parse(c);
                 return el.getAsJsonObject();

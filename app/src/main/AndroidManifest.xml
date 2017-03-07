@@ -101,7 +101,8 @@
             android:exported="true" />
 
         <activity android:name=".ui.activity.PhotoListActivity" />
-        <activity android:name=".ui.activity.PersonDetailActivity"></activity>
+        <activity android:name=".ui.activity.PersonDetailActivity" />
+        <activity android:name=".ui.activity.ForgetPwdActivity"></activity>
     </application>
 
 </manifest>

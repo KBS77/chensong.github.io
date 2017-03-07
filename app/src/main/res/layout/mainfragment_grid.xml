@@ -6,7 +6,9 @@
     android:layout_margin="2dp"
     >
 
-    <TextView android:layout_width="0dp"
+    <TextView
+        android:id="@+id/tv_main_zaitu"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:text="在途"
@@ -14,9 +16,12 @@
         android:textSize="18sp"
         android:textColor="@color/colorTheme"
         android:layout_margin="2dp"
+        android:clickable="true"
         android:background="@android:color/white"/>
 
-    <TextView android:layout_width="0dp"
+    <TextView
+        android:id="@+id/tv_main_dream"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:text="梦想"
@@ -24,9 +29,12 @@
         android:gravity="center"
         android:textColor="@color/colorTheme"
         android:layout_margin="2dp"
+        android:clickable="true"
         android:background="@android:color/white"/>
 
-    <TextView android:layout_width="0dp"
+    <TextView
+        android:id="@+id/tv_main_time"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:text="时光"
@@ -34,9 +42,12 @@
         android:gravity="center"
         android:textColor="@color/colorTheme"
         android:layout_margin="2dp"
+        android:clickable="true"
         android:background="@android:color/white"/>
 
-    <TextView android:layout_width="0dp"
+    <TextView
+        android:id="@+id/tv_main_jiangxin"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:text="匠心"
@@ -44,6 +55,7 @@
         android:gravity="center"
         android:textColor="@color/colorTheme"
         android:layout_margin="2dp"
+        android:clickable="true"
         android:background="@android:color/white"/>
 
 </LinearLayout>

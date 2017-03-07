@@ -12,4 +12,15 @@
     <color name="main_bg">#c1c3c3</color>
     <color name="transparent">#00000000</color>
     <color name="textColor000">#000000</color>
+    <color name="white">#fafafa</color>
+    <color name="button_gray">#e0e0e0</color>
+    <color name="line_boder_gray">#e0e0e0</color>
+
+    <color name="text_white_0">#fefefe</color>
+    <color name="label_black">#000</color>
+    <color name="input_hint">#c5c5c5</color>
+    <color name="input_color">#000</color>
+    <color name="blue">#03a9f4</color>
+    <color name="viewBackground">#f1f1f1</color>
+    
 </resources>

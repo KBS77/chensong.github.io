@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <include layout="@layout/mainfragment_header"/>
+            <!--<include layout="@layout/mainfragment_header"/>-->
             <include layout="@layout/mainfragment_grid"/>
             <include layout="@layout/mainfragment_list"/>
 
